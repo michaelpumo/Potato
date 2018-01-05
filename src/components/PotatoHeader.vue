@@ -1,8 +1,12 @@
 <template>
   <header class="Header">
-    <h1 class="Header__logo">
-      <router-link to="/" exact>Home</router-link>
-    </h1>
+    <div class="Header__logo">
+      <router-link to="/" exact>
+        <svg :width="50" :height="48" :viewBox="Logo.viewbox">
+          <use :xlink:href="'#' + Logo.id" />
+        </svg>
+      </router-link>
+    </div>
     <div class="Header__tools">
       <potato-navigation></potato-navigation>
     </div>
@@ -11,9 +15,15 @@
 
 <script>
 import PotatoNavigation from '@/components/PotatoNavigation'
+import Logo from '@/assets/svg/logo.svg'
 
 export default {
   name: 'PotatoHeader',
+  data () {
+    return ({
+      Logo
+    })
+  },
   components: {
     PotatoNavigation
   }
@@ -27,7 +37,22 @@ export default {
 
 .Header {
 
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: map-get($depth, 'header');
+  width: 100%;
+  height: $header-height;
+  background-color: map-get($brand, 'dark');
+  padding: 0 $gap-small;
+  display: flex;
+  align-items: center;
 
+  svg {
+
+    display: block;
+
+  }
 
 }
 </style>
