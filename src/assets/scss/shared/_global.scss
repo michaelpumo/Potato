@@ -1,0 +1,47 @@
+::placeholder {
+
+  color: lighten(map-get($brand, 'grey'), 20%);
+
+}
+
+::selection {
+
+  background-color: rgba(map-get($brand, 'red'), 1);
+  color: white;
+
+}
+
+html {
+
+  box-sizing: border-box;
+  text-size-adjust: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1em;
+  line-height: 1.5;
+  min-height: 100%;
+
+}
+
+body {
+
+  color: map-get($brand, 'grey');
+  background-color: map-get($brand, 'grey-light');
+  font-family: $font-sans;
+  padding: $header-height 0 0 0;
+
+  &.has-dialog {
+
+    overflow: hidden;
+
+  }
+
+}
+
+*,
+*:before,
+*:after {
+
+  box-sizing: inherit;
+
+}

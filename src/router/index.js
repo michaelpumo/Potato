@@ -1,15 +1,31 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import VueRouter from 'vue-router'
+import PotatoFeed from '@/pages/PotatoFeed'
+import PotatoSingle from '@/pages/PotatoSingle'
+import PotatoError from '@/pages/PotatoError'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
+const router = new VueRouter({
+  mode: 'history',
+  linkActiveClass: 'is-active',
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'PotatoFeed',
+      component: PotatoFeed
+    },
+    {
+      path: '/single/:id',
+      name: 'PotatoSingle',
+      component: PotatoSingle
+    },
+    {
+      path: '*',
+      name: 'PotatoError',
+      component: PotatoError
     }
   ]
 })
+
+export default router

@@ -1,0 +1,139 @@
+// Perfect Fourth Modular Scale.
+// http://type-scale.com/?size=16&scale=1.333&text=Fantastic%20two%20bedroom%20flat%20available%20now&webfont=Lato&font-family=%27Lato%27%2C%20serif&font-weight=600&font-family-headers=&font-weight-headers=inherit&background-color=white&font-color=%23333
+
+@font-face {
+  font-family: 'Ginger';
+  src: url('./assets/fonts/f37ginger-bold-webfont.woff2') format('woff2'),
+       url('./assets/fonts/f37ginger-bold-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ginger';
+  src: url('./assets/fonts/f37ginger-light-webfont.woff2') format('woff2'),
+       url('./assets/fonts/f37ginger-light-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bolton';
+  src: url('./assets/fonts/f37_bolton-bold-webfont.woff2') format('woff2'),
+       url('./assets/fonts/f37_bolton-bold-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bolton';
+  src: url('./assets/fonts/f37_bolton-regular-webfont.woff2') format('woff2'),
+       url('./assets/fonts/f37_bolton-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+
+  word-break: break-word;
+  font-family: $font-headings;
+  color: map-get($brand, 'navy');
+  font-weight: 600;
+  margin: 15px 0;
+
+}
+
+h1,
+.t-h1 {
+
+  @extend %h1;
+
+}
+
+h2,
+.t-h2 {
+  
+  @extend %h2;
+
+}
+
+h3,
+.t-h3 {
+  
+  @extend %h3;
+
+}
+
+h4,
+.t-h4 {
+
+  @extend %h4;
+
+}
+
+h5,
+.t-h5 {
+
+  @extend %h5;
+
+}
+
+h6,
+.t-h6 {
+
+  @extend %h6;
+
+}
+
+strong,
+b {
+
+  font-weight: 600;
+
+}
+
+a {
+
+  color: map-get($brand, 'red');
+  transition: color $trans-speed $trans-ease;
+  cursor: pointer;
+
+  &:hover,
+  &:active,
+  &:focus {
+
+    color: map-get($brand, 'navy');
+
+  }
+
+}
+
+p,
+ul,
+ol,
+li {
+
+  margin: 15px 0;
+
+}
+
+ul,
+ol {
+
+  li {
+
+    &:last-child {
+
+      margin-bottom: 0;
+
+    }
+
+  }
+
+}
+

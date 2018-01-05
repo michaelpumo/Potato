@@ -1,0 +1,35 @@
+%h1 {
+
+  font-size: map-get($type, 'h1');
+
+}
+
+%h2 {
+  
+  font-size: map-get($type, 'h2');
+
+}
+
+%h3 {
+  
+  font-size: map-get($type, 'h3');
+
+}
+
+%h4 {
+
+  font-size: map-get($type, 'h4');
+
+}
+
+%h5 {
+
+  font-size: map-get($type, 'h5');
+
+}
+
+%h6 {
+
+  font-size: map-get($type, 'h6');
+
+}
