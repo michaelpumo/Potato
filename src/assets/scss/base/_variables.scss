@@ -17,41 +17,30 @@ $bp: (
 );
 
 $brand: (
-  'red': #DF6C74,
-  'green': #99C46D,
-  'yellow': #ecce79,
-  'blue': #63ADF5,
-  'cyan': #59B6C4,
-  'orange': #D09B5C,
-  'purple': #C575E4,
-  'navy': #282C35,
-  'grey': #888E99,
-  'grey-light': #F1F1F1,
-  'grey-lightest': #f7f7f7,
-  'slate': #5F697F
+  'pink': #ad2b65,
+  'dark': #2c242e,
+  'grey-dark': #403840,
+  'grey-medium': #494149,
+  'grey-light': rgba(240,232,222,.6)
 );
 
 $type: (
-  'h1': 3.157em,
-  'h2': 2.369em,
-  'h3': 1.777em,
-  'h4': 1.333em,
-  'h5': 1em,
-  'h6': 0.75em,
+  'h1': 52px,
+  'h2': 46px,
+  'h3': 32px,
+  'h4': 26px,
+  'h5': 20px,
+  'h6': 16px,
 );
 
 $gap-small: 20px;
-$gap-medium: 30px;
+$gap-medium: 40px;
 
-$filters-width: 280px;
-
-$font-headings: "Ginger", serif;
-$font-sans: "Bolton", serif;
+$font-headings: "Futura LT W01 Light", "Lato", sans-serif;
+$font-sans: "Lato", sans-serif;
 $font-serif: "Libre Baskerville", serif;
 
 $border-radius: 2px;
-$shadow-edge: 0px 3px 0px rgba(0, 0, 0, 0.1);
-
 $header-height: 80px;
 
 // Penner Equations.
