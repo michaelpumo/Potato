@@ -1,9 +1,11 @@
 <template>
   <article class="Post">
-    <img class="Post__image" :src="image">
+    <router-link :to="{ name: 'PotatoSingle', params: { id: internalId }}">
+      <img class="Post__image" :src="image">
+    </router-link>
     <div class="Post__content">
       <h1 class="Post__title">
-        <router-link to="/single/">{{ title }}</router-link>
+        <router-link :to="{ name: 'PotatoSingle', params: { id: internalId }}">{{ title }}</router-link>
       </h1>
       <footer class="Post__meta">
         <p class="Post__author"><a :href="'https://www.flickr.com/people/' + authorId" target="_blank" rel="noopener">{{ formattedAuthor }}</a></p>
@@ -46,6 +48,11 @@ export default {
     }
   },
   computed: {
+    internalId () {
+      const link = this.link.trim()
+      const id = link.split('/').filter(item => item.length).pop()
+      return id
+    },
     formattedPublished () {
       const published = new Date(this.published)
       return format(new Date(published), '[Published:] Do MMM YYYY [at] HH:mm')
