@@ -19,6 +19,7 @@ h6 {
   font-family: $font-headings;
   font-weight: 300;
   margin: 15px 0;
+  line-height: 1.4;
 
 }
 
@@ -73,15 +74,16 @@ b {
 
 a {
 
-  color: map-get($brand, 'pink');
+  color: white;
   transition: color $trans-speed $trans-ease;
   cursor: pointer;
+  text-decoration: none;
 
   &:hover,
   &:active,
   &:focus {
 
-    color: map-get($brand, 'grey');
+    color: map-get($brand, 'pink');
 
   }
 

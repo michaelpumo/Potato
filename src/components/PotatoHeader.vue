@@ -1,14 +1,16 @@
 <template>
   <header class="Header">
-    <div class="Header__logo">
-      <router-link to="/" exact>
-        <svg :width="50" :height="48" :viewBox="Logo.viewbox">
-          <use :xlink:href="'#' + Logo.id" />
-        </svg>
-      </router-link>
-    </div>
-    <div class="Header__tools">
-      <potato-navigation></potato-navigation>
+    <div class="Header__main">
+      <div class="Header__logo">
+        <router-link to="/" exact>
+          <svg :width="50" :height="48" :viewBox="Logo.viewbox">
+            <use :xlink:href="'#' + Logo.id" />
+          </svg>
+        </router-link>
+      </div>
+      <div class="Header__tools">
+        <potato-navigation></potato-navigation>
+      </div>
     </div>
   </header>
 </template>
@@ -44,9 +46,19 @@ export default {
   width: 100%;
   height: $header-height;
   background-color: map-get($brand, 'dark');
-  padding: 0 $gap-small;
-  display: flex;
-  align-items: center;
+  // padding: 0 $gap-small;
+  display: grid;
+  grid-gap: $gap-small;
+  grid-template-columns: 1fr minmax(auto, #{$max-site-width}) 1fr;
+  grid-template-rows: 1fr; 
+
+  &__main {
+    
+    grid-column: 2 / 3;
+    display: flex;
+    align-items: center;
+
+  }
 
   svg {
 

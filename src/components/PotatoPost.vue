@@ -2,7 +2,7 @@
   <article class="Post">
     <img class="Post__image" :src="image">
     <div class="Post__content">
-      <h1 class="Post__title t-h2">
+      <h1 class="Post__title">
         <router-link to="/single/">{{ title }}</router-link>
       </h1>
       <div class="Post__meta">
@@ -58,16 +58,35 @@ export default {
 .Post {
 
   width: 100%;
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  grid-template-rows: minmax(170px, 1fr);
-  grid-gap: 20px;
-
   background-color: map-get($brand, 'grey-dark');
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  grid-template-rows: minmax(170px, 1fr);
+
+  @include media(map-get($bp, 'medium')) {
+
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: minmax(170px, 1fr);
+
+  }
 
   &:nth-child(odd) {
 
     background-color: map-get($brand, 'grey-medium');
+
+  }
+
+  &__content {
+
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    padding: $gap-small;
 
   }
 
@@ -83,7 +102,21 @@ export default {
 
   &__title {
 
+    width: 100%;
     margin: 0;
+    font-size: map-get($type, 'h4');
+
+    @include media(map-get($bp, 'large')) {
+
+      font-size: map-get($type, 'h3');
+
+    }
+
+    @include media(map-get($bp, 'x-large')) {
+
+      font-size: map-get($type, 'h2');
+
+    }
 
     a {
 
@@ -95,22 +128,37 @@ export default {
 
   }
 
-  &__content {
+  &__meta {
 
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
     width: 100%;
-    height: auto;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
+    color: map-get($brand, 'grey-light');
+
+    @include media(map-get($bp, 'large')) {
+
+      display: flex;
+
+    }
 
   }
 
-  &__meta {
+  &__published {
 
-    display: flex;
+    @include media(map-get($bp, 'large')) {
+    
+      margin-left: 20px;
+      margin-right: 20px;
+
+    }
+
+  }
+
+  &__flickr {
+
+    @include media(map-get($bp, 'large')) {
+    
+      margin-left: auto;
+
+    }
 
   }
 
