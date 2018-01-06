@@ -1,6 +1,6 @@
 <template>
   <article class="Post">
-    <router-link :to="{ name: 'PotatoSingle', params: { id: internalId }}">
+    <router-link :to="{ name: 'PotatoSingle', params: { id: internalId }}" class="Post__thumbnail">
       <img class="Post__image" :src="image">
     </router-link>
     <div class="Post__content">
@@ -74,16 +74,9 @@ export default {
 
   width: 100%;
   background-color: map-get($brand, 'grey-dark');
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  grid-template-rows: minmax(170px, 1fr);
-
-  @include media(map-get($bp, 'medium')) {
-
-    grid-template-columns: 300px 1fr;
-    grid-template-rows: minmax(170px, 1fr);
-
-  }
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 
   &:nth-child(odd) {
 
@@ -93,22 +86,49 @@ export default {
 
   &__content {
 
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-    width: 100%;
+    width: 100px;
     height: auto;
     display: flex;
-    align-items: flex-start;
+    flex: 1;
     justify-content: center;
     flex-direction: column;
-    padding: #{$gap-small / 2} $gap-small;
+    padding: 0 $gap-small;
+
+    @include media(map-get($bp, 'large')) {
+
+      padding: 0 $gap-large;
+
+    }
+
+  }
+
+  &__thumbnail {
+
+    width: 100px;
+    height: 180px;
+
+    @include media(map-get($bp, 'small')) {
+
+      width: 150px;
+
+    }
+
+    @include media(map-get($bp, 'medium')) {
+
+      width: 200px;
+
+    }
+
+    @include media(map-get($bp, 'large')) {
+
+      width: 300px;
+
+    }
 
   }
 
   &__image {
 
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -117,9 +137,11 @@ export default {
 
   &__title {
 
-    width: 100%;
     margin-bottom: 0;
     font-size: map-get($type, 'h4');
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     @include media(map-get($bp, 'large')) {
 
@@ -135,7 +157,6 @@ export default {
 
     a {
 
-      display: block;
       text-decoration: inherit;
       color: inherit;
 
@@ -156,12 +177,18 @@ export default {
 
   }
 
+  &__author {
+
+
+  }
+
   &__published {
+
+    margin-top: -15px;
 
     @include media(map-get($bp, 'large')) {
     
-      margin-left: 20px;
-      margin-right: 20px;
+      margin: 15px;
 
     }
 
@@ -169,11 +196,6 @@ export default {
 
   &__flickr {
 
-    @include media(map-get($bp, 'large')) {
-    
-      margin-left: auto;
-
-    }
 
   }
 
