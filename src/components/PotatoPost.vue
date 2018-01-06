@@ -5,11 +5,11 @@
       <h1 class="Post__title">
         <router-link to="/single/">{{ title }}</router-link>
       </h1>
-      <div class="Post__meta">
-        <p class="Post__author">{{ author }}</p>
-        <p class="Post__published"><time :datetime="published">{{ dateFormatted }}</time></p>
-        <p class="Post__flickr"><a :href="link" target="_blank">View on Flickr</a></p>
-      </div>
+      <footer class="Post__meta">
+        <p class="Post__author"><a :href="'https://www.flickr.com/people/' + authorId" target="_blank" rel="noopener">{{ formattedAuthor }}</a></p>
+        <p class="Post__published"><time :datetime="published">{{ formattedPublished }}</time></p>
+        <p class="Post__flickr"><a :href="link" target="_blank" rel="noopener">View on Flickr</a></p>
+      </footer>
     </div>
   </article>
 </template>
@@ -28,6 +28,10 @@ export default {
       type: String,
       required: true
     },
+    authorId: {
+      type: String,
+      required: true
+    },
     published: {
       type: String,
       required: true
@@ -42,9 +46,13 @@ export default {
     }
   },
   computed: {
-    dateFormatted () {
-      const d = new Date(this.published)
-      return format(new Date(d), '[Published:] Do MMM YYYY [at] HH:mm')
+    formattedPublished () {
+      const published = new Date(this.published)
+      return format(new Date(published), '[Published:] Do MMM YYYY [at] HH:mm')
+    },
+    formattedAuthor () {
+      const author = this.author.trim()
+      return (/"/.test(author)) ? author.match(/"(.*?)"/)[1] : author
     }
   }
 }
@@ -86,7 +94,7 @@ export default {
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
-    padding: $gap-small;
+    padding: #{$gap-small / 2} $gap-small;
 
   }
 
@@ -103,7 +111,7 @@ export default {
   &__title {
 
     width: 100%;
-    margin: 0;
+    margin-bottom: 0;
     font-size: map-get($type, 'h4');
 
     @include media(map-get($bp, 'large')) {

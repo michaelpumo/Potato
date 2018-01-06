@@ -6,6 +6,7 @@
         :key="index"
         :title="post.title"
         :author="post.author"
+        :authorId="post.author_id"
         :published="post.published"
         :image="post.media.m"
         :link="post.link"
