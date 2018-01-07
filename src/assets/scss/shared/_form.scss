@@ -3,6 +3,7 @@
   $root: &;
 
   position: relative;
+  width: 100%;
 
   [disabled] {
 
@@ -14,173 +15,36 @@
 
   &__fieldset {
 
+    width: 100%;
     margin: 0;
     padding: 0;
+    outline: none;
     border: none;
-    transition:
-      opacity $trans-speed $trans-ease;
-
-    &.is-loading {
-
-      opacity: 0.2;
-      user-select: none;
-      pointer-events: none;
-
-    }
 
   }
 
   &__legend {
 
-    display: none;
-
-  }
-
-  &__group {
-
-    @include media(map-get($bp, 'small')) {
-
-      display: grid;
-      grid-gap: 0px 20px;
-      grid-template-columns: repeat(2, 1fr);
-
-    }
-
-  }
-
-  &__field {
-
-    margin: 0 0 20px 0;
+    @extend %a11y;
 
   }
 
   &__label {
 
-    display: block;
-    width: 100%;
-    margin: 0 0 15px 0;
-    font-weight: 600;
-    color: map-get($brand, 'navy');
-    user-select: none;
+    @extend %a11y;
 
   }
 
-  &__input,
-  &__textarea {
+  &__input {
 
     font-family: $font-sans;
     width: 100%;
-    padding: 20px;
+    padding: 15px 20px;
     border: none;
     box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.1);
     outline: none;
     border-radius: $border-radius;
     background-color: white;
-    line-height: 1.5;
-
-    #{$root}--inverted & {
-
-      background-color: map-get($brand, 'grey-lightest');
-
-    }
-
-    &[type="date"] {
-
-      padding: 19px 20px;
-
-    }
-
-  }
-
-  &__textarea {
-
-    min-height: 200px;
-
-  }
-
-  &__checkbox {
-
-    display: none;
-
-    &:checked + #{$root}__switch {
-
-      background-color: map-get($brand, 'green');
-
-      &::before {
-
-        transform: translate3d(100%, 0, 0);
-
-      }
-
-    }
-
-  }
-
-  &__switch {
-
-    position: relative;
-    display: block;
-    width: 3.8em;
-    height: 2em;
-    background-color: rgba(0, 0, 0, 0.1);
-    text-indent: -9999em;
-    cursor: pointer;
-    transition: background-color $trans-speed $trans-ease;
-    border-radius: 2em;
-    padding: 2px;
-    outline: 0;
-    user-select: none;
-
-    &::before {
-
-      content: "";
-      position: relative;
-      display: block;
-      top: 0;
-      left: 0;
-      width: 50%;
-      height: 100%;
-      background-color: white;
-      transition: transform $trans-speed $easeOutExpo;
-      border-radius: 50%;
-
-    }
-
-    span {
-
-      display: none;
-
-    }
-
-  }
-
-  &__title {
-
-    @extend %h4;
-
-    color: map-get($brand, 'navy');
-
-  }
-
-  &__text {
-
-    @extend %h4;
-
-  }
-
-  &__hint {
-
-    @extend %h6;
-
-  }
-
-  &__message {
-
-    &--error {
-
-      color: map-get($brand, 'red');
-
-    }
 
   }
 

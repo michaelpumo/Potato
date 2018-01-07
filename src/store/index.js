@@ -41,7 +41,8 @@ const store = new Vuex.Store({
       state.flickr = payload
     },
     setTags (state, payload) {
-      state.tags = [...state.tags, payload]
+      const tags = payload.trim().split(' ')
+      state.tags = [...state.tags, tags]
     }
   },
   actions: {

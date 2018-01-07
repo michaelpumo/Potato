@@ -9,14 +9,14 @@
         </router-link>
       </div>
       <div class="Header__tools">
-        <potato-navigation></potato-navigation>
+        <potato-search></potato-search>
       </div>
     </div>
   </header>
 </template>
 
 <script>
-import PotatoNavigation from '@/components/PotatoNavigation'
+import PotatoSearch from '@/components/PotatoSearch'
 import Logo from '@/assets/svg/logo.svg'
 
 export default {
@@ -27,7 +27,7 @@ export default {
     })
   },
   components: {
-    PotatoNavigation
+    PotatoSearch
   }
 }
 </script>
@@ -46,11 +46,16 @@ export default {
   width: 100%;
   height: $header-height;
   background-color: map-get($brand, 'dark');
-  // padding: 0 $gap-small;
   display: grid;
   grid-gap: $gap-small;
   grid-template-columns: 1fr minmax(auto, #{$max-site-width}) 1fr;
-  grid-template-rows: 1fr; 
+  grid-template-rows: 1fr;
+
+  svg {
+
+    display: block;
+
+  }
 
   &__main {
     
@@ -60,9 +65,17 @@ export default {
 
   }
 
-  svg {
+  &__logo {
 
-    display: block;
+    margin-right: $gap-small;
+
+  }
+
+  &__tools {
+
+    display: flex;
+    align-items: center;
+    width: 100%;
 
   }
 

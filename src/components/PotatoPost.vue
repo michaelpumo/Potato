@@ -50,8 +50,7 @@ export default {
   computed: {
     internalId () {
       const link = this.link.trim()
-      const id = link.split('/').filter(item => item.length).pop()
-      return id
+      return link.split('/').filter(item => item.length).pop()
     },
     formattedPublished () {
       const published = new Date(this.published)
