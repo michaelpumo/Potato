@@ -103,7 +103,7 @@ export default {
 
   &__thumbnail {
 
-    width: 100px;
+    width: 90px;
     height: 180px;
 
     @include media(map-get($bp, 'small')) {

@@ -27,7 +27,7 @@ const store = new Vuex.Store({
       return state.flickr
     },
     getTags (state) {
-      return state.tags
+      return state.tags.join(',')
     },
     getPosts (state) {
       return (state.flickr) ? state.flickr.items : []
@@ -42,7 +42,7 @@ const store = new Vuex.Store({
     },
     setTags (state, payload) {
       const tags = payload.trim().split(' ')
-      state.tags = [...state.tags, tags]
+      state.tags = tags
     }
   },
   actions: {

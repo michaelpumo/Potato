@@ -50,6 +50,7 @@ export default {
   grid-gap: $gap-small;
   grid-template-columns: 1fr minmax(auto, #{$max-site-width}) 1fr;
   grid-template-rows: 1fr;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 
   svg {
 

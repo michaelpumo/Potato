@@ -3,26 +3,42 @@
     <form class="Search__form Form">
       <fieldset class="Form__fieldset">
         <legend class="Form__legend">Search</legend>
-        <input class="Form__input" :value="getTags">
+        <input
+          class="Form__input"
+          v-model="tags"
+          @input="update"
+          @change="update"
+        >
       </fieldset>
     </Form>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'PotatoSearch',
   data () {
     return ({
-      // tag: this.getTags
+      tags: ''
     })
   },
   computed: {
     ...mapGetters([
       'getTags'
     ])
+  },
+  mounted () {
+    this.tags = this.getTags
+  },
+  methods: {
+    ...mapActions([
+      'setTags'
+    ]),
+    update ({ target }) {
+      this.setTags(target.value)
+    }
   }
 }
 </script>

@@ -27,7 +27,7 @@ export default {
     ]),
     getData () {
       this.$jsonp('https://api.flickr.com/services/feeds/photos_public.gne', {
-        tags: this.getTags.join(','),
+        tags: this.getTags,
         tagmode: 'all',
         format: 'json',
         jsoncallback: 'jsonFlickrFeed'
