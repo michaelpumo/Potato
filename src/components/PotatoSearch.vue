@@ -39,6 +39,7 @@ export default {
       'fetchPosts'
     ]),
     updateData () {
+      this.$router.push('/')
       const field = this.$refs.field
       this.setTags(field.value)
       this.setInput(this.tags)
