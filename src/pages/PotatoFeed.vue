@@ -2,7 +2,7 @@
   <div class="Feed">
     <div class="Feed__main">
       <potato-post
-        v-for="(post, index) in getPosts"
+        v-for="(post, index) in posts"
         :key="index"
         :title="post.title"
         :author="post.author"
@@ -17,22 +17,28 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import PotatoPost from '@/components/PotatoPost'
 
 export default {
   name: 'PotatoFeed',
-  data () {
-    return ({
-    })
-  },
   components: {
     PotatoPost
   },
   computed: {
     ...mapGetters([
-      'getPosts'
+      'tags',
+      'posts'
     ])
+  },
+  methods: {
+    ...mapActions([
+      'setTags',
+      'fetchPosts'
+    ])
+  },
+  mounted () {
+    this.fetchPosts()
   }
 }
 </script>

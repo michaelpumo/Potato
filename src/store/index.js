@@ -1,59 +1,74 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import vuexPersistedState from 'vuex-persistedstate'
-// import fetchJsonp from 'fetch-jsonp'
+import VuexPersistedState from 'vuex-persistedstate'
+import fetchJsonp from 'fetch-jsonp'
 
 Vue.use(Vuex)
 
+window.jsonFlickrFeed = (data) => {
+  console.log('Data', data)
+}
+
 const store = new Vuex.Store({
-  // plugins: [vuexPersistedState({
-  //   key: 'potatoStore',
-  //   paths: [
-  //   ]
-  // })],
+  plugins: [VuexPersistedState({
+    key: 'potatoStore',
+    paths: [
+      'tags'
+    ]
+  })],
   strict: process.env.NODE_ENV !== 'production',
   state: {
     isLoading: false,
-    flickr: undefined,
-    tags: [
-      'potato'
-    ]
+    posts: [],
+    tags: ['potato']
   },
   getters: {
     isLoading (state) {
       return state.isLoading
     },
-    getFlickr (state) {
-      return state.flickr
+    tags (state) {
+      return state.tags.join(' ')
     },
-    getTags (state) {
+    tagsCommas (state) {
       return state.tags.join(',')
     },
-    getPosts (state) {
-      return (state.flickr) ? state.flickr.items : []
+    posts (state) {
+      return state.posts
     }
   },
   mutations: {
     setLoading (state, flag) {
       state.isLoading = flag
     },
-    setFlickr (state, payload) {
-      state.flickr = payload
-    },
     setTags (state, payload) {
-      const tags = payload.trim().split(' ')
-      state.tags = tags
+      state.tags = payload
+    },
+    setPosts (state, payload) {
+      state.posts = payload
     }
   },
   actions: {
     setLoading (context, payload) {
       context.commit('setLoading', payload.flag)
     },
-    setFlickr (context, payload) {
-      context.commit('setFlickr', payload)
-    },
     setTags (context, payload) {
-      context.commit('setTags', payload)
+      const tags = payload.trim().split(' ').filter(item => (item.length && item.match(/^[0-9a-zA-Z]+$/)))
+      context.commit('setTags', tags)
+    },
+    fetchPosts (context, payload) {
+      const tags = this.getters.tagsCommas
+      fetchJsonp(`https://api.flickr.com/services/feeds/photos_public.gne?tags=${tags}&tagmode=all&format=json`, {
+        timeout: 8000,
+        jsonpCallbackFunction: 'jsonFlickrFeed'
+      })
+      .then(response => response.json())
+      .then(json => {
+        const items = json.items
+        context.commit('setPosts', items)
+      })
+      .catch(error => {
+        console.log('Error in fetch to Flickr', error)
+      })
     }
   }
 })

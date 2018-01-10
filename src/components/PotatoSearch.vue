@@ -1,13 +1,14 @@
 <template>
   <div class="Search">
-    <form class="Search__form Form">
+    <form class="Search__form Form" @submit.prevent="updateData">
       <fieldset class="Form__fieldset">
         <legend class="Form__legend">Search</legend>
         <input
           class="Form__input"
-          v-model="tags"
-          @input="update"
-          @change="update"
+          placeholder="Enter tags separated by a space. Only letters and numbers are accepted."
+          ref="field"
+          v-model="input"
+          @change="updateData"
         >
       </fieldset>
     </Form>
@@ -21,23 +22,30 @@ export default {
   name: 'PotatoSearch',
   data () {
     return ({
-      tags: ''
+      input: ''
     })
   },
   computed: {
     ...mapGetters([
-      'getTags'
+      'tags'
     ])
   },
   mounted () {
-    this.tags = this.getTags
+    this.setInput(this.tags)
   },
   methods: {
     ...mapActions([
-      'setTags'
+      'setTags',
+      'fetchPosts'
     ]),
-    update ({ target }) {
-      this.setTags(target.value)
+    updateData () {
+      const field = this.$refs.field
+      this.setTags(field.value)
+      this.setInput(this.tags)
+      this.fetchPosts()
+    },
+    setInput (value) {
+      this.input = value
     }
   }
 }

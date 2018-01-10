@@ -1,10 +1,7 @@
 import Vue from 'vue'
-import VueJsonp from 'vue-jsonp'
 import App from './App'
 import router from './router'
 import store from './store'
-
-Vue.use(VueJsonp)
 
 Vue.config.productionTip = false
 
