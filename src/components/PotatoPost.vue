@@ -83,24 +83,6 @@ export default {
 
   }
 
-  &__content {
-
-    width: 100px;
-    height: auto;
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 $gap-small;
-
-    @include media(map-get($bp, 'large')) {
-
-      padding: 0 $gap-large;
-
-    }
-
-  }
-
   &__thumbnail {
 
     width: 90px;
@@ -126,6 +108,25 @@ export default {
 
   }
 
+  &__content {
+
+    width: 100px;
+    min-width: 0;
+    height: auto;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 $gap-small;
+
+    @include media(map-get($bp, 'large')) {
+
+      padding: 0 $gap-large;
+
+    }
+
+  }
+
   &__image {
 
     width: 100%;
@@ -137,18 +138,12 @@ export default {
   &__title {
 
     margin-bottom: 0;
-    font-size: map-get($type, 'h4');
+    font-size: map-get($type, 'h3');
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 
     @include media(map-get($bp, 'large')) {
-
-      font-size: map-get($type, 'h3');
-
-    }
-
-    @include media(map-get($bp, 'x-large')) {
 
       font-size: map-get($type, 'h2');
 
