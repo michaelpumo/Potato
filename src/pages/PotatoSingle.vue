@@ -1,6 +1,6 @@
 <template>
   <div class="Single">
-    <h1>{{ title }} {{ id }}</h1>
+    <h1>{{ post }}</h1>
   </div>
 </template>
 
@@ -8,13 +8,17 @@
 export default {
   name: 'PotatoSingle',
   data () {
-    return {
-      id: this.$route.params.id,
-      title: 'Single'
+    return ({
+      id: this.$route.params.id
+    })
+  },
+  computed: {
+    post () {
+      return this.$store.getters.post(this.id)
     }
   },
   watch: {
-    '$route.params.id': function (id) {
+    '$route.params.id': (id) => {
       this.$forceUpdate()
     }
   }

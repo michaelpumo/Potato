@@ -18,6 +18,7 @@
 
 <script>
 import { format } from 'date-fns'
+import { postId } from '@/utilities/helpers'
 
 export default {
   name: 'PotatoPost',
@@ -50,7 +51,7 @@ export default {
   computed: {
     internalId () {
       const link = this.link.trim()
-      return link.split('/').filter(item => item.length).pop()
+      return postId(link)
     },
     formattedPublished () {
       const published = new Date(this.published)

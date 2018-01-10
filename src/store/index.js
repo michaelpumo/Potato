@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersistedState from 'vuex-persistedstate'
 import fetchJsonp from 'fetch-jsonp'
+import { postId } from '@/utilities/helpers'
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ const store = new Vuex.Store({
   plugins: [VuexPersistedState({
     key: 'potatoStore',
     paths: [
+      'posts',
       'tags'
     ]
   })],
@@ -34,6 +36,12 @@ const store = new Vuex.Store({
     },
     posts (state) {
       return state.posts
+    },
+    post (state) {
+      return id => state.posts.find(item => {
+        const linkId = postId(item.link)
+        return linkId === id
+      })
     }
   },
   mutations: {
