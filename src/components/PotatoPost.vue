@@ -1,11 +1,11 @@
 <template>
   <article class="Post">
-    <router-link :to="{ name: 'PotatoSingle', params: { id: internalId }}" class="Post__thumbnail">
+    <router-link :to="{ name: 'PotatoSingle', params: { id: formattedId }}" class="Post__thumbnail">
       <img class="Post__image" :src="image">
     </router-link>
     <div class="Post__content">
       <h1 class="Post__title">
-        <router-link :to="{ name: 'PotatoSingle', params: { id: internalId }}">{{ title }}</router-link>
+        <router-link :to="{ name: 'PotatoSingle', params: { id: formattedId }}">{{ title }}</router-link>
       </h1>
       <footer class="Post__meta">
         <p class="Post__author"><a :href="'https://www.flickr.com/people/' + authorId" target="_blank" rel="noopener">{{ formattedAuthor }}</a></p>
@@ -17,8 +17,7 @@
 </template>
 
 <script>
-import { format } from 'date-fns'
-import { postId } from '@/utilities/helpers'
+import { postId, postPublished, postAuthor } from '@/utilities/helpers'
 
 export default {
   name: 'PotatoPost',
@@ -49,17 +48,14 @@ export default {
     }
   },
   computed: {
-    internalId () {
-      const link = this.link.trim()
-      return postId(link)
+    formattedId () {
+      return postId(this.link)
     },
     formattedPublished () {
-      const published = new Date(this.published)
-      return format(new Date(published), '[Published:] Do MMM YYYY [at] HH:mm')
+      return postPublished(this.published)
     },
     formattedAuthor () {
-      const author = this.author.trim()
-      return (/"/.test(author)) ? author.match(/"(.*?)"/)[1] : author
+      return postAuthor(this.author)
     }
   }
 }
