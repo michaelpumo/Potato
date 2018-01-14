@@ -19,7 +19,7 @@ h6 {
   font-family: $font-headings;
   font-weight: 300;
   margin: 15px 0;
-  line-height: 1.4;
+  line-height: 1.2;
 
 }
 
@@ -89,10 +89,7 @@ a {
 
 }
 
-p,
-ul,
-ol,
-li {
+p {
 
   margin: 15px 0;
 
@@ -101,7 +98,11 @@ li {
 ul,
 ol {
 
+  margin: 15px 0;
+
   li {
+
+    margin: 5px 0;
 
     &:last-child {
 
