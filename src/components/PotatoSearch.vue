@@ -1,6 +1,6 @@
 <template>
   <div class="Search">
-    <form class="Search__form Form" @submit.prevent="updateData">
+    <form class="Search__form Form" @submit.prevent="updateData" autocomplete="off" novalidate>
       <fieldset class="Form__fieldset">
         <legend class="Form__legend">Search</legend>
         <input
