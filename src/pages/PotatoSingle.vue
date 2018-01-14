@@ -6,7 +6,13 @@
     <div class="Post__content">
       <h1 class="Post__title">{{ post.title }}</h1>
       <div class="Post__description" v-html="post.description"></div>
-      {{ post.tags }}
+
+      <ul class="Post__tags">
+        <li v-for="(tag, index) in formattedTags" :key="index">
+          <a :href="'https://www.flickr.com/photos/tags/' + tag" target="_blank" rel="noopener">{{ tag }}</a>
+        </li>
+      </ul>
+
       <footer class="Post__meta">
         <p class="Post__author"><a :href="'https://www.flickr.com/people/' + post.author_id" target="_blank" rel="noopener">{{ formattedAuthor }}</a></p>
         <p class="Post__published"><time :datetime="post.published">{{ formattedPublished }}</time></p>
@@ -17,7 +23,7 @@
 </template>
 
 <script>
-import { postId, postPublished, postAuthor } from '@/utilities/helpers'
+import { postId, postPublished, postAuthor, postTags } from '@/utilities/helpers'
 
 export default {
   name: 'PotatoSingle',
@@ -38,6 +44,9 @@ export default {
     },
     formattedAuthor () {
       return postAuthor(this.post.author)
+    },
+    formattedTags () {
+      return postTags(this.post.tags)
     }
   },
   watch: {
