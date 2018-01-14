@@ -1,5 +1,6 @@
 <template>
   <div class="App">
+    <potato-loader></potato-loader>
     <potato-header></potato-header>
     <transition name="App__fade">
       <router-view></router-view>
@@ -8,11 +9,13 @@
 </template>
 
 <script>
+import PotatoLoader from '@/components/PotatoLoader'
 import PotatoHeader from '@/components/PotatoHeader'
 
 export default {
   name: 'App',
   components: {
+    PotatoLoader,
     PotatoHeader
   }
 }
