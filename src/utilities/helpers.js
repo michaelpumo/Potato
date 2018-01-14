@@ -1,7 +1,7 @@
 import format from 'date-fns/format'
 
 export function postId (link) {
-  return link.trim().split('/').filter(item => item.length).pop()
+  return link.trim().split('/').filter(item => item.trim().length).pop()
 }
 
 export function postPublished (date) {
@@ -15,5 +15,15 @@ export function postAuthor (author) {
 }
 
 export function postTags (tags) {
-  return tags.split(' ').filter(item => item.length)
+  return tags.split(' ').filter(item => item.trim().length)
+}
+
+export function postDescription (html) {
+  const description = html.split('</p>')
+                          .filter(item => item.trim().length)
+                          .map(item => `${item}</p>`.trim())
+                          .splice(2)
+                          .join('')
+
+  return description
 }
