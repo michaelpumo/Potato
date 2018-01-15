@@ -50,13 +50,16 @@ export default {
 
 .Feed {
 
-  display: grid;
-  grid-template-columns: 1fr minmax(auto, #{$max-site-width}) 1fr;
-  grid-template-rows: 1fr; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
   
   &__main {
 
-    grid-column: 2 / 3;
+    width: 100%;
+    max-width: $max-site-width;
 
   }
 
