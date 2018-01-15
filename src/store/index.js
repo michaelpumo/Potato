@@ -25,18 +25,10 @@ const store = new Vuex.Store({
     tags: ['potato']
   },
   getters: {
-    isLoading (state) {
-      return state.isLoading
-    },
-    tags (state) {
-      return state.tags.join(' ')
-    },
-    tagsCommas (state) {
-      return state.tags.join(',')
-    },
-    posts (state) {
-      return state.posts
-    },
+    isLoading: (state) => state.isLoading,
+    tags: (state) => state.tags.join(' '),
+    tagsCommas: (state) => state.tags.join(','),
+    posts: (state) => state.posts,
     post (state) {
       return id => state.posts.find(item => {
         const linkId = postId(item.link)
@@ -57,25 +49,29 @@ const store = new Vuex.Store({
   },
   actions: {
     setLoading (context, payload) {
-      context.commit('setLoading', payload.flag)
+      context.commit('setLoading', payload)
     },
     setTags (context, payload) {
       const tags = payload.trim().split(' ').filter(item => (item.length && item.match(/^[0-9a-zA-Z]+$/)))
       context.commit('setTags', tags)
     },
-    fetchPosts (context, payload) {
+    fetchPosts ({ commit, state }) {
+      commit('setLoading', true)
       const tags = this.getters.tagsCommas
       fetchJsonp(`https://api.flickr.com/services/feeds/photos_public.gne?tags=${tags}&tagmode=all&format=json`, {
         timeout: 8000,
+        jsonpCallback: 'jsoncallback',
         jsonpCallbackFunction: 'jsonFlickrFeed'
       })
       .then(response => response.json())
       .then(json => {
         const items = json.items
-        context.commit('setPosts', items)
+        commit('setPosts', items)
+        commit('setLoading', false)
       })
       .catch(error => {
         console.log('Error in fetch to Flickr', error)
+        commit('setLoading', false)
       })
     }
   }
