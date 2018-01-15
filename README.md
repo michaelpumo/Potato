@@ -2,6 +2,10 @@
 
 > A small practical assignment for Potato built on Vue by Michael Pumo
 
+## Demo
+
+[http://potato-flickr.netlify.com/](http://potato-flickr.netlify.com/)
+
 ## About
 
 This small app will fetch a feed of posts from a Flickr API endpoint, passing with it 'tags' by which to search for. The default tag when first opening the app is 'potato'.
