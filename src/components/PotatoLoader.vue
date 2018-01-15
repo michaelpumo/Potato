@@ -1,16 +1,20 @@
 <template>
   <div class="Loader" :class="{ 'is-loading': isLoading }">
-    <div class="Loader__icon"></div>
+    <svg class="Loader__icon" :width="50" :height="48" :viewBox="Logo.viewbox">
+      <use :xlink:href="'#' + Logo.id" />
+    </svg>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import Logo from '@/assets/svg/logo.svg'
 
 export default {
   name: 'PotatoLoader',
   data () {
     return ({
+      Logo
     })
   },
   computed: {
@@ -23,7 +27,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/scss/base/variables.scss";
-// @import "../assets/scss/base/animations.scss";
 @import "../assets/scss/base/mixins.scss";
 
 .Loader {
@@ -43,10 +46,11 @@ export default {
   opacity: 0;
   background-color: rgba(map-get($brand, 'dark'), 0.9);
   transition:
-    opacity $trans-speed $trans-ease;
+    opacity ($trans-speed * 2) ($trans-delay * 2) $trans-ease;
 
   &.is-loading {
 
+    transition-delay: 0s;
     opacity: 1;
     pointer-events: auto;
 
@@ -54,21 +58,13 @@ export default {
 
   &__icon {
 
-    border-top: 5px solid rgba(white, 0.2);
-    border-right: 5px solid rgba(white, 0.2);
-    border-bottom: 5px solid rgba(white, 0.2);
-    border-left: 5px solid white;
-    animation-name: spin;
-    animation-duration: ($trans-speed * 2);
+    width: 80px;
+    height: 80px;
+    animation-name: pulse;
+    animation-duration: ($trans-speed * 1.5);
     animation-iteration-count: infinite;
-    animation-timing-function: linear;
-
-    &,
-    &:after {
-      border-radius: 50%;
-      width: 80px;
-      height: 80px;
-    }
+    animation-timing-function: $easeOutBack;
+    animation-direction: alternate-reverse;
 
   }
 
