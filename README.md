@@ -4,7 +4,7 @@
 
 ## Demo
 
-[http://potato-flickr.netlify.com/](http://potato-flickr.netlify.com/)
+[https://potato-flickr.netlify.com/](https://potato-flickr.netlify.com/)
 
 ## About
 
