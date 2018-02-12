@@ -46,11 +46,12 @@ export default {
   width: 100%;
   height: $header-height;
   background-color: map-get($brand, 'dark');
-  display: grid;
-  grid-gap: $gap-small;
-  grid-template-columns: 1fr minmax(auto, #{$max-site-width}) 1fr;
-  grid-template-rows: 1fr;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  padding: 0 $gap-small;
 
   svg {
 
@@ -59,10 +60,11 @@ export default {
   }
 
   &__main {
-    
-    grid-column: 2 / 3;
+
     display: flex;
     align-items: center;
+    width: 100%;
+    max-width: $max-site-width;
 
   }
 
@@ -74,6 +76,7 @@ export default {
 
   &__tools {
 
+    flex: 1;
     display: flex;
     align-items: center;
     width: 100%;
