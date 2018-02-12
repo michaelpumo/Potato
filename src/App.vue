@@ -2,7 +2,7 @@
   <div class="App">
     <potato-loader></potato-loader>
     <potato-header></potato-header>
-    <transition name="App__fade">
+    <transition name="App__fade" mode="out-in">
       <router-view></router-view>
     </transition>
   </div>

@@ -63,7 +63,10 @@ export default {
   mounted () {
     if (!this.post) {
       this.$router.push({ name: 'PotatoError' })
+      return
     }
+
+    window.scrollTo(0, 0)
   }
 }
 </script>
