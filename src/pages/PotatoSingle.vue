@@ -1,6 +1,6 @@
 <template>
   <article class="Post">
-    <div class="Post__main">
+    <div v-if="post" class="Post__main">
       <h1 class="Post__title">{{ post.title }}</h1>
       <div class="Post__meta">
         <p class="Post__author"><a :href="'https://www.flickr.com/people/' + post.author_id" target="_blank" rel="noopener">{{ formattedAuthor }}</a></p>
@@ -58,6 +58,11 @@ export default {
   watch: {
     '$route.params.id': (id) => {
       this.$forceUpdate()
+    }
+  },
+  mounted () {
+    if (!this.post) {
+      this.$router.push({ name: 'PotatoError' })
     }
   }
 }

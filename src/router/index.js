@@ -24,7 +24,8 @@ const router = new VueRouter({
       component: PotatoSingle
     },
     {
-      path: '*',
+      alias: '*',
+      path: '/404',
       name: 'PotatoError',
       component: PotatoError
     }
